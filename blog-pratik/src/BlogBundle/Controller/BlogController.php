@@ -1,10 +1,11 @@
 <?php
 
 namespace BlogBundle\Controller;
+use \BlogBundle\Entity\Post;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use \BlogBundle\Entity\Post;
+use Symfony\Component\HttpFoundation\Request;
 
 class BlogController extends Controller
 {
@@ -43,16 +44,33 @@ class BlogController extends Controller
     /**
      * @Route("/postAdd", name="blogpratik_add")
      */
-    public function addPostAction()
+    public function addPostAction(Request $request)
     {
         $post = new Post();
 
         $formBuilder = $this->get('form.factory')->createBuilder('form', $post);
         $formBuilder->add('titre', 'text')
                     ->add('content', 'textarea')
+                    ->add('published', 'datetime')
+                    ->add('url_alias', 'text')
                     ->add('Envoyer', 'submit');
-
         $form = $formBuilder->getForm();
+        
+        
+   
+        $form->handleRequest($request);
+        
+        
+        if($form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', 'Post bien enregistré');
+            
+            return $this->redirect($this->generateUrl('blogpratik_postpage', array('postId' => $post->getId())));
+        }
+        
+        
         return $this->render('BlogBundle:Blog:add.html.twig', array('form' => $form->createView() ));
     }
 }
