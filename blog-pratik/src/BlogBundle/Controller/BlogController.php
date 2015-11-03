@@ -4,6 +4,7 @@ namespace BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use \BlogBundle\Entity\Post;
 
 class BlogController extends Controller
 {
@@ -37,5 +38,21 @@ class BlogController extends Controller
     {
         return $this->render('BlogBundle:Blog:post.html.twig',
                                             array('post' => $this->getPost($postId)));
+    }
+
+    /**
+     * @Route("/postAdd", name="blogpratik_add")
+     */
+    public function addPostAction()
+    {
+        $post = new Post();
+
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $post);
+        $formBuilder->add('titre', 'text')
+                    ->add('content', 'textarea')
+                    ->add('Envoyer', 'submit');
+
+        $form = $formBuilder->getForm();
+        return $this->render('BlogBundle:Blog:add.html.twig', array('form' => $form->createView() ));
     }
 }
