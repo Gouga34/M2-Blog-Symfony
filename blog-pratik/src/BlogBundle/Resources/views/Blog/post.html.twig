@@ -1,0 +1,12 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block title %} {{ parent () }} - Post {% endblock %}
+
+{% block body %}
+
+    Post {{ post.titre }} [{{ post.urlAlias }}]
+    {{ post.published|date('d/m/Y h:i:s') }}
+    
+    {{ post.content }}
+
+{% endblock %}
