@@ -2,4 +2,15 @@
 
 {% block title %} {{ parent () }} - Accueil {% endblock %}
 
-{% block body %} Bienvenue sur le BLOG PRA'TIK le blog de foufou ! {% endblock %}
+{% block body %}
+    Bienvenue sur le BLOG PRA'TIK le blog de foufou !
+
+    <ul>
+        {% for post in posts %}
+            <li>
+                {{ post.titre }}
+                {{ post.published|date('d/m/Y h:i:s') }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
