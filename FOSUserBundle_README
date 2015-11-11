@@ -1,0 +1,61 @@
+FOSUserBundle
+
+** Doc et installation
+	
+	https://symfony.com/doc/master/bundles/FOSUserBundle/index.html
+
+** Traductions
+
+	- Activer les traductions dans le config.yml  (modif commit)
+
+** Installation
+
+	1/- Téléchargement du bundle
+
+		-> Pré-requis : Téléchargement de composer pour télécharger le bundle (depuis le dossier du projet Symfony je pense)
+
+			curl -sS https://getcomposer.org/installer | php
+			sudo mv composer.phar /usr/local/bin/composer
+
+		-> Téléchargement du bundle
+
+			composer require friendsofsymfony/user-bundle "~2.0@dev"
+
+	2/- Activer le bundle dans le kernel
+
+		Maj de AppKernel.php avec le bundle (modif commit)
+
+	3/- Création de la classe User
+
+	4/- Configuration du security.yml	(modif commit)
+
+	5/- Configuration de FOSUserBundle	(modif commit)
+
+		app/config/config.yml
+
+		On indique :
+
+			- type de stockage (orm/doctrine)
+			- firewall (security.yml)
+			- chemin de la classe User
+
+	6/- Import des fichiers de routage FOSUserBundle  (modif commit)
+
+		app/config/routing.yml
+
+
+		Note : 
+
+			In order to use the built-in email functionality (confirmation of the account, resetting of the password), you must activate and configure the SwiftmailerBundle.
+
+
+	7/- Mise à jour du schéma de base de données
+
+		Avec doctrine :
+
+			php app/console doctrine:schema:update --force
+
+
+
+
+
