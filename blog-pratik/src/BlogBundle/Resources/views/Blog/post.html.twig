@@ -3,11 +3,15 @@
 {% block title %} {{ parent () }} - Post {% endblock %}
 
 {% block body %}
-
-    Post {{ post.titre }} [{{ post.urlAlias }}]
-    {{ post.published|date('d/m/Y h:i:s') }}
-    <p>
-        {{ post.content }}
-    </p>
-
+    <div class="container">
+        <h1 class="text-center">{{ post.titre }} <small>[{{ post.urlAlias }}]</small></h1>
+        <div class="nav-tabs">
+            <a href="{{ path('post_update', { 'id': post.id }) }}">Modifier</a>
+            <a href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
+          </div>
+        <p class="text-right"><em>{{ post.published|date('d/m/Y h:i:s') }}</em></p>
+        <p class="text-left panel">
+            {{ post.content }}
+        </p>
+    </div>
 {% endblock %}

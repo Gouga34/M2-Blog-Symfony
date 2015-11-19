@@ -9,7 +9,12 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+         <ul class="nav nav-tabs">
+            <li><a href="{{ path('blogpratik_homepage') }}">Accueil</a></li>
+            <li><a href="{{ path('blogpratik_add') }}">Ajouter un post</a></li>
+          </ul>
         {% block body %}{% endblock %}
+       
         {% block javascripts %}{% endblock %}
     </body>
 </html>

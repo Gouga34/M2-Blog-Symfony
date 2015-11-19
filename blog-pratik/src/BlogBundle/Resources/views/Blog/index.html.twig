@@ -3,14 +3,15 @@
 {% block title %} {{ parent () }} - Accueil {% endblock %}
 
 {% block body %}
-    Bienvenue sur le BLOG PRA'TIK le blog de foufou !
-
-    <ul>
-        {% for post in posts %}
-            <li>
-                {{ post.titre }}
-                {{ post.published|date('d/m/Y h:i:s') }}
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1 class="text-center">Bienvenue sur BLOG PRA'TIK le blog de foufou !</h1>
+        <div class="list-group">
+                {% for post in posts %}
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading"><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.titre }}</a></h4>
+                        <p class="list-group-item-text">Date de publication : {{ post.published|date('d/m/Y h:i:s') }}</p>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
 {% endblock %}
