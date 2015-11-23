@@ -55,11 +55,8 @@ class BlogController extends Controller
                     ->add('url_alias', 'text')
                     ->add('Envoyer', 'submit');
         $form = $formBuilder->getForm();
-        
-        
    
         $form->handleRequest($request);
-        
         
         if($form->isValid()){
             $em=$this->getDoctrine()->getManager();
@@ -70,7 +67,33 @@ class BlogController extends Controller
             return $this->redirect($this->generateUrl('blogpratik_postpage', array('postId' => $post->getId())));
         }
         
-        
         return $this->render('BlogBundle:Blog:add.html.twig', array('form' => $form->createView() ));
+    }
+    
+    /**
+     * @Route("/postUpdate/{id}", name="blogpratik_update")
+     */
+    public function updatePostAction($id, Request $request )
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('BlogBundle:Post')->find($id);
+        
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $post);
+        $formBuilder->add('content', 'textarea')
+                    ->add('url_alias', 'text')
+                    ->add('Envoyer', 'submit');
+        $form = $formBuilder->getForm();
+        
+        $form->handleRequest($request);
+        
+        if($form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', 'Post bien mis à jour');
+            
+            return $this->redirect($this->generateUrl('blogpratik_postpage', array('postId' => $post->getId())));
+        }
+        
+        return $this->render('BlogBundle:Blog:update.html.twig', array('form' => $form->createView() ));
     }
 }
