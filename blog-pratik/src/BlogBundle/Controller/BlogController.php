@@ -71,6 +71,18 @@ class BlogController extends Controller
     }
     
     /**
+     * @Route("/postDelete/{id}", name="blogpratik_delete")
+     */
+    public function deletePostAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('BlogBundle:Post')->find($id);
+        $em->remove($post);
+        $em->flush();
+        
+        return $this->render('BlogBundle:Blog:index.html.twig', array('posts' => $this->getPosts()));
+    }
+    
+    /**
      * @Route("/postUpdate/{id}", name="blogpratik_update")
      */
     public function updatePostAction($id, Request $request )
