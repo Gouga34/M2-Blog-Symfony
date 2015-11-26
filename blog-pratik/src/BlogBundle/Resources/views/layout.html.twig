@@ -11,8 +11,8 @@
     <body>
          <ul class="nav nav-tabs">
             <li><a href="{{ path('blogpratik_homepage') }}">Accueil</a></li>
-            <li><a href="{{ path('blogpratik_add') }}">Ajouter un post</a></li>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li><a href="{{ path('blogpratik_add') }}">Ajouter un post</a></li>
             <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
             {% else %}
             <li><a href="{{ path('blogpratik_login') }}">Connexion</a></li>

@@ -6,8 +6,10 @@
     <div class="container">
         <h1 class="text-center">{{ post.titre }} <small>[{{ post.urlAlias }}]</small></h1>
         <div class="nav-tabs">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <a href="{{ path('blogpratik_update', { 'id': post.id }) }}">Modifier</a>
             <a href="{{ path('blogpratik_delete', { 'id': post.id }) }}">Supprimer</a>
+            {% endif %}
           </div>
         <p class="text-right"><em>{{ post.published|date('d/m/Y h:i:s') }}</em></p>
         <p class="text-left panel">
