@@ -38,7 +38,7 @@ class BlogController extends Controller
     public function loginAction() {
         return $this->render('BlogBundle:Blog:login.html.twig');
     }
-
+    
     /**
      * @Route("/post/{postId}", name="blogpratik_postpage")
      */
