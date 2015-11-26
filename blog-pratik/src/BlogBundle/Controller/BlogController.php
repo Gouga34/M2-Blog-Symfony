@@ -31,6 +31,13 @@ class BlogController extends Controller
         return $this->render('BlogBundle:Blog:index.html.twig',
                                             array('posts' => $this->getPosts()));
     }
+    
+    /**
+     * @Route("/loginBlogPratik", name="blogpratik_login")
+     */
+    public function loginAction() {
+        return $this->render('BlogBundle:Blog:login.html.twig');
+    }
 
     /**
      * @Route("/post/{postId}", name="blogpratik_postpage")
