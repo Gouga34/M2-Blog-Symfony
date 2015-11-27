@@ -1,0 +1,25 @@
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+    <div class="form-group" id="fos_user_registration_form">
+        
+        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email'|trans } }) }}
+        {{ form_errors(form.email) }}
+    
+
+        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Pseudo'|trans } }) }}
+        {{ form_errors(form.username) }}
+
+        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'|trans } }) }}
+        {{ form_errors(form.plainPassword.first) }}
+
+        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Confirmation de mot de passe'|trans } }) }}
+        {{ form_errors(form.plainPassword.second) }}
+
+        {{ form_rest(form) }}
+    
+        <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+                <input class="btn btn-default" type="submit" value="{{ 'Inscription'|trans }}">
+            </div>
+        </div>
+    </div>
+</form>

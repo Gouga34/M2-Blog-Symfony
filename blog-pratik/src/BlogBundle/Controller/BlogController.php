@@ -40,6 +40,12 @@ class BlogController extends Controller
     }
     
     /**
+     * @Route("/registerBlogPratik", name="blogpratik_register")
+     */
+    public function registerAction() {
+        return $this->render('BlogBundle:Blog:register.html.twig');
+    }
+    /**
      * @Route("/post/{postId}", name="blogpratik_postpage")
      */
     public function postView($postId)
