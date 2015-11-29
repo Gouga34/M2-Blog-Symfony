@@ -115,7 +115,6 @@ class BlogController extends Controller
         
         $formBuilder = $this->get('form.factory')->createBuilder('form', $post);
         $formBuilder->add('content', 'textarea')
-                    ->add('url_alias', 'text')
                     ->add('Envoyer', 'submit');
         $form = $formBuilder->getForm();
         
