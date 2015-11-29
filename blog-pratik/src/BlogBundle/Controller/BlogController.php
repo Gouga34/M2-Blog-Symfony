@@ -50,8 +50,12 @@ class BlogController extends Controller
      */
     public function postView($postId)
     {
+        $post = $this->getPost($postId);
+        $isAuthor = ($this->getUser() == $post->getAuthor());
+        
         return $this->render('BlogBundle:Blog:post.html.twig',
-                                            array('post' => $this->getPost($postId)));
+                                            array('post' => $post,
+                                                    'isAuthor' => $isAuthor));
     }
 
     /**
