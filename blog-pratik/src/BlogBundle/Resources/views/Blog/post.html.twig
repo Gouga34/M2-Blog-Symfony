@@ -11,6 +11,7 @@
             <a href="{{ path('blogpratik_delete', { 'id': post.id }) }}">Supprimer</a>
             {% endif %}
           </div>
+        <p class="text-right"><em>{{ post.author }}</em></p>
         <p class="text-right"><em>{{ post.published|date('d/m/Y h:i:s') }}</em></p>
         <p class="text-left panel">
             {{ post.content }}

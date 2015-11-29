@@ -41,6 +41,14 @@ class Post
      * @ORM\Column(name="content", type="text")
      */
     private $content;
+    
+    /**
+     * @var integer
+     * 
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="author", referencedColumnName="id") 
+     */
+    private $author;
 
     /**
      * @var \DateTime
@@ -155,5 +163,28 @@ class Post
     {
         return $this->published;
     }
-}
 
+    /**
+     * Set author
+     *
+     * @param \BlogBundle\Entity\User $author
+     *
+     * @return Post
+     */
+    public function setAuthor(\BlogBundle\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \BlogBundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+}
