@@ -64,17 +64,23 @@ class BlogController extends Controller
         $formBuilder = $this->get('form.factory')->createBuilder('form', $post);
         $formBuilder->add('titre', 'text')
                     ->add('content', 'textarea')
-                    ->add('published', 'datetime')
-                    ->add('url_alias', 'text')
                     ->add('Envoyer', 'submit');
         $form = $formBuilder->getForm();
    
         $form->handleRequest($request);
         
+        $post->setUrlAlias("");
+        $post->setPublished(new \DateTime());
+        $post->setAuthor($this->getUser());
+        
         if($form->isValid()){
             $em=$this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
+            
+            $post->setUrlAlias("localhost:8000/post/" . $post->getId());
+            $em->flush();
+            
             $request->getSession()->getFlashBag()->add('notice', 'Post bien enregistré');
             
             return $this->redirect($this->generateUrl('blogpratik_postpage', array('postId' => $post->getId())));
