@@ -1,58 +1,12 @@
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
-            <label for="email" class="col-sm-2 control-label">Email</label>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input type="email"  class="form-control" id="fos_user_registration_form_email" name="_username"  required="required" />
-                </div>
-            </div>
-                
-            <label for="username" class="col-sm-2 control-label">Login</label>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input type="text"  class="form-control" id="fos_user_registration_form_username" name="_username" required="required" />
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="password" class="col-sm-2 control-label">Mot de passe</label>
-                <div class="col-sm-10">
-                    <input type="password"  class="form-control" id="fos_user_registration_form_plainPassword_first" name="_password" required="required" />
-                </div>
-            </div>
-               
-            <div class="form-group">
-                <label for="password" class="col-sm-2 control-label">Confirmation du mot de passe</label>
-                <div class="col-sm-10">
-                    <input type="password"  class="form-control" id="fos_user_registration_form_plainPassword_second" name="_password" required="required" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit"  class="btn btn-default" id="_submit" name="_submit" value="Inscription" />
-                </div>
-            </div>
-    
-    {#<div class="form-group" id="fos_user_registration_form">
-        
-        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email'|trans } }) }}
-        {{ form_errors(form.email) }}
-    
-
-        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Pseudo'|trans } }) }}
-        {{ form_errors(form.username) }}
-
-        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'|trans } }) }}
-        {{ form_errors(form.plainPassword.first) }}
-
-        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Confirmation de mot de passe'|trans } }) }}
-        {{ form_errors(form.plainPassword.second) }}
-
-        {{ form_rest(form) }}
-    
-        <div class="form-group"> 
-            <div class="col-sm-offset-2 col-sm-10">
-                <input class="btn btn-default" type="submit" value="{{ 'Inscription'|trans }}">
-            </div>
-        </div>
-    </div>#}
-</form>
+  <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal" role="form">
+ 
+  {{ form_errors(form.username) }}
+  {{ form_label(form.username) }}
+  {{ form_widget(form.username) }}
+  {{ form_errors(form.plainPassword.first) }}
+  {{ form_label(form.plainPassword.first) }}
+  {{ form_widget(form.plainPassword.first) }}
+ 
+  {{ form_rest(form) }}
+ 
+<button type="submit" class="btn btn-primary">Inscription <span class="glyphicon glyphicon-ok"></span></button>
