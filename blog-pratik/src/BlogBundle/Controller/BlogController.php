@@ -29,7 +29,7 @@ class BlogController extends Controller
     {
         
         return $this->render('BlogBundle:Blog:index.html.twig',
-                                            array('posts' => $this->getPosts()));
+                                            array('posts' => $this->getPosts(), 'username' => $this->getUser()));
     }
     
     /**
