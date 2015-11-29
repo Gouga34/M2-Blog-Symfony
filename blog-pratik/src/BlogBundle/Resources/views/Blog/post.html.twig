@@ -7,8 +7,8 @@
         <h1 class="text-center">{{ post.titre }} <small>[{{ post.urlAlias }}]</small></h1>
         <div class="nav-tabs">
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and isAuthor == true %}
-            <a href="{{ path('blogpratik_update', { 'id': post.id }) }}"><span class="glyphicon glyphicon-edit" style="color:gray" aria-hidden="true"></span></a>
-            <a href="{{ path('blogpratik_delete', { 'id': post.id }) }}"><span class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"></span></a>
+            <a href="{{ path('blogpratik_update', { 'id': post.id }) }}" title="Modifier"><span class="glyphicon glyphicon-edit" style="color:gray" aria-hidden="true"></span></a>
+            <a href="{{ path('blogpratik_delete', { 'id': post.id }) }}" title="Supprimer"><span class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"></span></a>
             {% endif %}
           </div>
         <p class="text-right"><em>{{ post.author }}</em></p>
