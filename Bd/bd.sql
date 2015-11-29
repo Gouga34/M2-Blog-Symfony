@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 11 Novembre 2015 à 11:16
+-- Généré le: Dim 29 Novembre 2015 à 15:00
 -- Version du serveur: 5.5.46-0ubuntu0.14.04.2
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -32,15 +32,10 @@ CREATE TABLE IF NOT EXISTS `post` (
   `url_alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `content` longtext COLLATE utf8_unicode_ci NOT NULL,
   `published` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `post`
---
-
-INSERT INTO `post` (`id`, `titre`, `url_alias`, `content`, `published`) VALUES
-(1, 'sdfsd', 'sdfsd', 'sdqfsd', '2010-01-01 00:00:00');
+  `author` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_5A8A6C8DBDAFD8C8` (`author`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
@@ -69,14 +64,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D64992FC23A8` (`username_canonical`),
   UNIQUE KEY `UNIQ_8D93D649A0D96FBF` (`email_canonical`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `user`
+-- Contraintes pour les tables exportées
 --
 
-INSERT INTO `user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`) VALUES
-(1, 'test', 'test', 'test@test.fr', 'test@test.fr', 1, 'iszn1uhpesgg8wok0ckgkwwk8k40s00', '$2y$13$iszn1uhpesgg8wok0ckgkuu3pNl83xO2X.yYUNvEwS26cC1Cjfz86', '2015-11-11 11:13:21', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL);
+--
+-- Contraintes pour la table `post`
+--
+ALTER TABLE `post`
+  ADD CONSTRAINT `FK_5A8A6C8DBDAFD8C8` FOREIGN KEY (`author`) REFERENCES `user` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
