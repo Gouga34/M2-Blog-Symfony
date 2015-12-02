@@ -3,11 +3,6 @@ app:
     type:     annotation
     prefix:   /
 
-acme_user:
-    resource: "@AcmeUserBundle/Controller/"
-    type:     annotation
-    prefix: /acme/
-
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
     

@@ -32,19 +32,7 @@ class BlogController extends Controller
                                             array('posts' => $this->getPosts(), 'username' => $this->getUser()));
     }
     
-    /**
-     * @Route("/loginBlogPratik", name="blogpratik_login")
-     */
-    public function loginAction() {
-        return $this->render('BlogBundle:Blog:login.html.twig');
-    }
     
-    /**
-     * @Route("/registerBlogPratik", name="blogpratik_register")
-     */
-    public function registerAction() {
-        return $this->render('BlogBundle:Blog:register.html.twig');
-    }
     /**
      * @Route("/post/{postId}", name="blogpratik_postpage")
      */
