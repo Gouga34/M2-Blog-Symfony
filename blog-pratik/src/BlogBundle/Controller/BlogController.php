@@ -90,7 +90,7 @@ class BlogController extends Controller
         $em->remove($post);
         $em->flush();
         
-        return $this->render('BlogBundle:Blog:index.html.twig', array('posts' => $this->getPosts()));
+        return $this->render('BlogBundle:Blog:index.html.twig', array('posts' => $this->getPosts(), 'username' => $this->getUser()));
     }
     
     /**
