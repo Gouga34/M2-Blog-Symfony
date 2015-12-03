@@ -2,17 +2,21 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet"
-            href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
         <title>{% block title %}Blog Pra'tik{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}        
+            <link rel="stylesheet"
+                href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+            <link rel="stylesheet"
+                href="{{ asset('bundles/blog/css/clean-blog.min.css') }}">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
           
-          <a class="navbar-brand" href="{{ path('blogpratik_homepage') }}">Accueil</a>
-          <ul class="nav navbar-nav">
+          <a class="navbar-brand" href="{{ path('blogpratik_homepage') }}">Blog Pratik</a>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ path('blogpratik_homepage') }}">Accueil</a></li>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <li><a href="{{ path('blogpratik_add') }}">Ajouter un post</a></li>
             <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
@@ -22,6 +26,21 @@
             {% endif %}
           </ul>
         </nav>
+          
+        <header class="intro-header" style="{% block pageImage %}background-color: black{% endblock %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="site-heading">
+                            <h1>{% block pageTitle %}Blog Pra'tik{% endblock %}</h1>
+                            <hr class="small">
+                            {% block pageSubtitle %}<span class="subheading">Blog d'astuces et conseils</span>{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+          
         {% block body %}{% endblock %}
        
         {% block javascripts %}{% endblock %}
