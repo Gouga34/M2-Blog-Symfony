@@ -118,4 +118,30 @@ class BlogController extends Controller
         
         return $this->render('BlogBundle:Blog:update.html.twig', array('form' => $form->createView() ));
     }
+    
+    /**
+     * 
+     * @Route("/listPosts/{page}", name="blogpratik_liste")
+     */
+  public function ListAction($page)
+    {
+        $maxArticles = 10;
+        $articles_count = $this->getDoctrine()
+                ->getRepository('BlogBundle:Post')
+                ->countPublishedTotal();
+        $pagination = array(
+            'page' => $page,
+            'route' => 'blogpratik_liste',
+            'pages_count' => ceil($articles_count / 3),
+            'route_params' => array()
+        );
+ 
+         $articles = $this->getDoctrine()->getRepository('BlogBundle:Post')
+                ->getList($page, $maxArticles);
+ 
+        return $this->render('BlogBundle:Blog:list.html.twig', array(
+            'posts' => $articles,
+            'pagination' => $pagination
+        ));
+    }
 }
