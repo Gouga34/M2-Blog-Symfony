@@ -2,6 +2,8 @@
 
 {% block title %} {{ parent () }} - Post {% endblock %}
 
+{% block pageImage %} background-image: url('{{ asset('bundles/blog/images/fleurs.jpg') }}') {% endblock %}
+
 {% block body %}
     <h1 class="text-center">Modifier un post</h1>
  <div class="container">

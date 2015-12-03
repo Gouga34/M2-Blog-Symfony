@@ -2,24 +2,30 @@
 
 {% block title %} {{ parent () }} - Accueil {% endblock %}
 
+{% block pageImage %} background-image: url('{{ asset('bundles/blog/images/arbre.jpg') }}') {% endblock %}
+
 {% block body %}
-   
     
     <div class="container">
-        <h1 class="text-center">Bienvenue sur BLOG PRA'TIK le blog de foufou !</h1>
         <div class="list-group">
                 {% for post in posts %}
-                    <div class="list-group-item">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and username == post.author %}
-                            <span class="badge">
-                                <a href="{{ path('blogpratik_update', { 'id': post.id }) }}" title="Modifier"><span class="glyphicon glyphicon-edit" style="color:white" aria-hidden="true"></span></a>
-                                <a href="{{ path('blogpratik_delete', { 'id': post.id }) }}" title="Supprimer"><span class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"></span></a>
-                            </span>
-                        {% endif %}
-                        <h4 class="list-group-item-heading"><a href="{{ path('blogpratik_postpage', { 'postId': post.id }) }}">{{ post.titre }}</a> by {{ post.author }}</h4>
-                        <p class="list-group-item-text">Date de publication : {{ post.published|date('d/m/Y h:i:s') }}</p>
-                        
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                            <div class="post-preview">
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and username == post.author %}
+                                    <span class="badge">
+                                        <a href="{{ path('blogpratik_update', { 'id': post.id }) }}" title="Modifier"><span class="glyphicon glyphicon-edit" style="color:white" aria-hidden="true"></span></a>
+                                        <a href="{{ path('blogpratik_delete', { 'id': post.id }) }}" title="Supprimer"><span class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"></span></a>
+                                    </span>
+                                {% endif %}
+                                <h2 class="post-title"><a href="{{ path('blogpratik_postpage', { 'postId': post.id }) }}">{{ post.titre }}</a></h2>
+                                <p class="post-meta" >Posté le {{ post.published|date('d/m/Y h:i:s') }} par {{ post.author }}</p>
+
+                            </div>
+                            <hr>
+                        </div>
                     </div>
+                   
                 {% endfor %}
         </div>
     </div>

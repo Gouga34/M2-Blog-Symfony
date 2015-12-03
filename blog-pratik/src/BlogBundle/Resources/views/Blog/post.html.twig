@@ -2,6 +2,12 @@
 
 {% block title %} {{ parent () }} - Post {% endblock %}
 
+{% block pageTitle %} {{ post.titre }} {% endblock %}
+
+{% block pageSubtitle %}<span class="meta">Posté le {{ post.published|date('d/m/Y h:i:s') }} par {{ post.author }}</span>{% endblock %}
+
+{% block pageImage %} background-image: url('{{ asset('bundles/blog/images/automne.jpg') }}') {% endblock %}
+
 {% block body %}
     <div class="container">
         <h1 class="text-center">{{ post.titre }} <small>[{{ post.urlAlias }}]</small></h1>
