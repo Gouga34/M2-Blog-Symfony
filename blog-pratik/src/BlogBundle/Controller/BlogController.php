@@ -23,7 +23,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/{page}", name="blogpratik_homepage")
+     * @Route("/{page}", name="blogpratik_homepage", requirements={"page": "\d+"})
      */
     public function indexAction($page = 1)
     {
@@ -108,7 +108,7 @@ class BlogController extends Controller
         $em->remove($post);
         $em->flush();
         
-        return $this->render('BlogBundle:Blog:index.html.twig', array('posts' => $this->getPosts(), 'username' => $this->getUser()));
+        return $this->indexAction();       
     }
     
     /**
