@@ -7,27 +7,8 @@
 {% block body %}
     
     <div class="container">
-        <div class="list-group">
-                {% for post in posts %}
-                    <div class="row">
-                        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and username == post.author %}
-                                    <span class="pull-right ">
-                                        <a href="{{ path('blogpratik_update', { 'id': post.id }) }}" title="Modifier"><span class="glyphicon glyphicon-edit" style="color:gray" aria-hidden="true"></span></a>
-                                        <a href="{{ path('blogpratik_delete', { 'id': post.id }) }}" title="Supprimer"><span class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"></span></a>
-                                    </span>
-                                {% endif %}
-                            <div class="post-preview">
-                                
-                                <h2 class="post-title"><a href="{{ path('blogpratik_postpage', { 'postId': post.id }) }}">{{ post.titre }}</a></h2>
-                                <p class="post-meta" >Posté le {{ post.published|date('d/m/Y h:i:s') }} par {{ post.author }}</p>
-
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                   
-                {% endfor %}
+        <div class="list-group ">
+            {% include 'BlogBundle:Blog:pagination.html.twig' %}
         </div>
     </div>
                 
